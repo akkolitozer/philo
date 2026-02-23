@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/23 16:46:06 by hulescur         ###   ########.fr       */
+/*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
+/*   Updated: 2026/02/23 15:45:53 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	main(int ac, char **av)
+int	parser_args(t_data philos, int	data, int i)
 {
-	int	i;
-	int	error;
-	t_data philos;
-
-	i = 0;
-	error = 0;
-	if (ac == 5 || ac == 6)
-	{
-		while (++i <= ac)
-		{
-			parser_args(philos, ft_atoi(av[i], &error), i);
-			if (error)
-				break ;
-		}
-		if (error)
-			printf("Error\nInvalid Arguments\n");
-	}
-	else
-		printf("Error\nWrong Arguments.\n");
-	return (0);
+	if (i == 1)
+		philos.philo_numbers = data;
+	if (i == 2)
+		philos.time_to_die = data;
+	if (i == 3)
+		philos.time_to_eat = data;
+	if (i == 4)
+		philos.time_to_sleep = data;
+	if (i == 5)
+		philos.number_of_meals = data;
 }

@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/22 20:26:55 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/23 15:46:53 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct	s_data
 	int	time_to_sleep;
 	int	number_of_meals;
 }				t_data;
+
+int	parser_args(t_data philos, int	data, int i);
 
 #endif
