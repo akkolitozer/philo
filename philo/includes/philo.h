@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/23 15:46:53 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/24 01:25:09 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,25 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "libft.h"
 
-typedef struct	s_data
+typedef struct	s_rules
 {
-	int	philo_numbers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_meals;
-}				t_data;
+	int		philo_numbers;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	number_of_meals;
+}				t_rules;
 
-int	parser_args(t_data philos, int	data, int i);
+typedef struct	s_philo
+{
+	int		id;
+	long	last_meal;
+	t_rules	*philos;
+
+}				t_philo;
+
+int	parser_args(t_rules *rules, char **av);
+int	ft_atoi(const char *str, int *error);
 
 #endif

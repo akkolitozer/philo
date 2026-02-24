@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/23 16:46:06 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/24 01:26:42 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,14 @@
 
 int	main(int ac, char **av)
 {
-	int	i;
-	int	error;
-	t_data philos;
+	int		error;
+	t_rules	rules;
 
-	i = 0;
-	error = 0;
 	if (ac == 5 || ac == 6)
-	{
-		while (++i <= ac)
-		{
-			parser_args(philos, ft_atoi(av[i], &error), i);
-			if (error)
-				break ;
-		}
-		if (error)
-			printf("Error\nInvalid Arguments\n");
-	}
+		error = parser_args(&rules, av);
 	else
-		printf("Error\nWrong Arguments.\n");
+		printf("Error\nWrong Arguments Number.\n");
+	if (error)
+		printf("Error\nInvalid Arguments\n");
 	return (0);
 }
