@@ -17,25 +17,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/time.h>
+#include <pthread.h>
 
-typedef struct s_rules
+typedef struct		s_rules
 {
-	int		philo_numbers;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	long	number_of_meals;
-	long	start;
-	long	now;
-	int		stop;
-	int		error;
-}				t_rules;
+	int				philo_numbers;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			number_of_meals;
+	long			start;
+	long			now;
+	int				stop;
+	int				error;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	m_stop;
+	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_meal;
+}					t_rules;
 
-typedef struct s_philo
+typedef struct	s_philo
 {
-	int		id;
-	long	last_meal;
-	t_rules	*philos;
+	int			id;
+	int			left_fork;
+	int			right_fork;
+	int			meals_eaten;
+	long		last_meal;
+	pthread_t	thread;
+	t_rules		*rules;
 
 }				t_philo;
 
