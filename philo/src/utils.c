@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-int	ft_atoi(const char *str, int *error)
+int	ft_atoi(const char *str, t_rules *rules)
 {
 	int			i;
 	int			s;
@@ -21,10 +21,10 @@ int	ft_atoi(const char *str, int *error)
 	{
 		num = num * 10 + (str[i] - '0');
 		if ((s == 1 && num > 2147483647) || (s == -1 && num * s < -2147483648))
-			*error = 1;
+			rules->error = 1;
 		i++;
 	}
 	if (str[i] || num * s <= 0)
-		*error = 1;
+		rules->error = 1;
 	return (num * s);
 }

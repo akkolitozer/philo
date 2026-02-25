@@ -12,25 +12,26 @@
 
 #include "../includes/philo.h"
 
-int	parser_args(t_rules *rules, char **av)
+void	parser_args(t_rules *rules, char **av)
 {
 	int	i;
-	int	error;
-	
+
 	i = 0;
-	error = 0;
+	rules->error = 0;
+	rules->number_of_meals = -1;
 	while (av[++i])
 	{
 		if (i == 1)
-			rules->philo_numbers = ft_atoi(av[i], &error);
-		if (i == 2)
-			rules->time_to_die = ft_atoi(av[i], &error);
-		if (i == 3)
-			rules->time_to_eat = ft_atoi(av[i], &error);
-		if (i == 4)
-			rules->time_to_sleep = ft_atoi(av[i], &error);
-		if (i == 5)
-			rules->number_of_meals = ft_atoi(av[i], &error);
+			rules->philo_numbers = ft_atoi(av[i], rules);
+		else if (i == 2)
+			rules->time_to_die = ft_atoi(av[i], rules);
+		else if (i == 3)
+			rules->time_to_eat = ft_atoi(av[i], rules);
+		else if (i == 4)
+			rules->time_to_sleep = ft_atoi(av[i], rules);
+		else if (i == 5)
+			rules->number_of_meals = ft_atoi(av[i], rules);
 	}
-	return (error);
+	if (rules->error)
+		printf("Error\nInvalid Arguments\n");
 }

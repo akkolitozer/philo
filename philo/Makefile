@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	src/main.c src/parsing.c src/utils.c \
+SRCS =	src/main.c src/parsing.c src/utils.c src/time.c \
 
 CC = cc 
 RM = rm -f

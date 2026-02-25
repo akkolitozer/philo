@@ -16,17 +16,22 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/time.h>
 
-typedef struct	s_rules
+typedef struct s_rules
 {
 	int		philo_numbers;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
 	long	number_of_meals;
+	long	start;
+	long	now;
+	int		stop;
+	int		error;
 }				t_rules;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int		id;
 	long	last_meal;
@@ -34,7 +39,9 @@ typedef struct	s_philo
 
 }				t_philo;
 
-int	parser_args(t_rules *rules, char **av);
-int	ft_atoi(const char *str, int *error);
+void	parser_args(t_rules *rules, char **av);
+int		ft_atoi(const char *str, t_rules *rules);
+long    get_ms(void);
+void    usleep_hm(long duration, t_rules *rules);
 
 #endif
