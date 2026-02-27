@@ -45,7 +45,6 @@ typedef struct	s_philo
 	long		last_meal;
 	pthread_t	thread;
 	t_rules		*rules;
-
 }				t_philo;
 
 void	parser_args(t_rules *rules, char **av);

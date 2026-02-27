@@ -23,13 +23,13 @@ void	parser_args(t_rules *rules, char **av)
 	{
 		if (i == 1)
 			rules->philo_numbers = ft_atoi(av[i], rules);
-		else if (i == 2)
+		else if (i == 2 && !rules->error)
 			rules->time_to_die = ft_atoi(av[i], rules);
-		else if (i == 3)
+		else if (i == 3 && !rules->error)
 			rules->time_to_eat = ft_atoi(av[i], rules);
-		else if (i == 4)
+		else if (i == 4 && !rules->error)
 			rules->time_to_sleep = ft_atoi(av[i], rules);
-		else if (i == 5)
+		else if (i == 5 && !rules->error)
 			rules->number_of_meals = ft_atoi(av[i], rules);
 	}
 	if (rules->error)
