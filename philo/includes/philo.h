@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/24 01:25:09 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/03 16:16:35 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct		s_rules
 {
-	int				philo_numbers;
+	int				philo_number;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
@@ -32,8 +32,6 @@ typedef struct		s_rules
 	int				error;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	m_stop;
-	pthread_mutex_t	m_print;
-	pthread_mutex_t	m_meal;
 }					t_rules;
 
 typedef struct	s_philo
@@ -51,5 +49,7 @@ void	parser_args(t_rules *rules, char **av);
 int		ft_atoi(const char *str, t_rules *rules);
 long    get_ms(void);
 void    usleep_hm(long duration, t_rules *rules);
+int		init_forks(t_philo **philo, t_rules *rules);
+int		init_philos(t_philo **philo);
 
 #endif

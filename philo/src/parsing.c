@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/24 01:24:30 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/03 16:01:40 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parser_args(t_rules *rules, char **av)
 	while (av[++i])
 	{
 		if (i == 1)
-			rules->philo_numbers = ft_atoi(av[i], rules);
+			rules->philo_number = ft_atoi(av[i], rules);
 		else if (i == 2 && !rules->error)
 			rules->time_to_die = ft_atoi(av[i], rules);
 		else if (i == 3 && !rules->error)
