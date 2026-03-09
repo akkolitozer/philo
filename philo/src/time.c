@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:59 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/03 09:19:00 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/10 00:04:29 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,11 @@ long    get_ms(void)
     return ((tv.tv_sec * 1000L) + (tv.tv_usec / 1000L));
 }
 
-void    usleep_hm(long duration, t_rules *rules)
+void    usleep_hm(t_philo *philo)
 {
     long    target;
 
-    target = get_ms() + duration;
-    while (get_ms() < target && !rules->stop)
-    {
-        if ((target - get_ms()) > 2)
-            usleep(1000);
-        else
-            usleep(150);
-    }
+    target = get_ms() + philo->rules->time_to_sleep;
+    while (get_ms() < target && !philo->rules->stop)
+        usleep(150);
 }
