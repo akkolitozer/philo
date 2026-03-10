@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 10:29:51 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:45:33 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	parser_args(t_rules *rules, char **av)
 	while (av[++i])
 	{
 		if (i == 1)
+		{
 			rules->philo_number = ft_atoi(av[i], rules);
+			if (rules->philo_number > 200)
+				rules->error = 1;
+		}
 		else if (i == 2 && !rules->error)
 			rules->time_to_die = ft_atoi(av[i], rules);
 		else if (i == 3 && !rules->error)
