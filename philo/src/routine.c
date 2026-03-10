@@ -15,9 +15,9 @@ int	simstop(t_philo *philo)
 void	takefork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->rules->forks[philo->left_fork]);
-	printff(philo, "has taken a fork");
+	printfm(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->rules->forks[philo->right_fork]);
-	printff(philo, "has taken a fork");
+	printfm(philo, "has taken a fork");
 }
 
 void	eat(t_philo *philo)
@@ -25,7 +25,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->mmeal);
 	philo->last_meal = get_ms();
 	pthread_mutex_unlock(&philo->rules->mmeal);
-	printff(philo, "is eating");
+	printfm(philo, "is eating");
 	usleep_hm(philo->rules, philo->rules->time_to_eat);
 	pthread_mutex_lock(&philo->rules->mmeal);
 	philo->meals_eaten++;

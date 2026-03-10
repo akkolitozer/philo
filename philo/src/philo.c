@@ -6,11 +6,37 @@
 /*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 01:31:37 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 01:52:45 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	monitor(t_philo *philo)
+{
+	int		i;
+	long	last_meal;
+	
+	while (1)
+	{
+		i = -1;
+		while (++i < philo[0].rules->philo_number)
+		{
+			pthread_mutex_lock(&philo[i].rules->mmeal);
+			last_meal = philo[i].last_meal;
+			pthread_mutex_unlock(&philo[i].rules->mmeal);
+			if (get_ms() - last_meal > philo[i].rules->time_to_die)
+			{
+				pthread_mutex_lock(&philo[i].rules->mstop);
+				philo[i].rules->stop = 1;
+				pthread_mutex_unlock(&philo[i].rules->mstop);
+				printfm(&philo[i], "died");
+				return ;
+			}
+		}
+		usleep(500);
+	}
+}
 
 int	init_mutexs(t_rules *rules)
 {
@@ -80,9 +106,9 @@ void	*routine(void *arg)
 		dropfork(philo);
 		if (all_meals_eaten(philo))
 			break ;
-		printff(philo, "is sleeping");
+		printfm(philo, "is sleeping");
 		usleep_hm(philo->rules, philo->rules->time_to_sleep);
-		printff(philo, "is thinking");
+		printfm(philo, "is thinking");
 		usleep(100);
 	}
 	return (NULL);

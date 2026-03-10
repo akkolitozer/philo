@@ -6,7 +6,7 @@
 /*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 01:22:39 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 01:47:18 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct		s_rules
 	long			number_of_meals;
 	long			start;
 	int				stop;
-	long			now;
 	int				error;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	mstop;
@@ -51,13 +50,14 @@ long    get_ms(void);
 void	eat(t_philo *philo);
 void	*routine(void *arg);
 void	ft_putstr(char *str);
+void	monitor(t_philo *philo);
 int		simstop(t_philo *philo);
 void	dropfork(t_philo *philo);
 void	takefork(t_philo *philo);
 int		init_mutexs(t_rules *rules);
 void	destroy_mutexs(t_rules *rules);
 int		all_meals_eaten(t_philo *philo);
-void	printff(t_philo *philo, char *str);
+void	printfm(t_philo *philo, char *str);
 void	*ft_calloc(size_t count, size_t size);
 void	parser_args(t_rules *rules, char **av);
 void    usleep_hm(t_rules *rules, int duration);

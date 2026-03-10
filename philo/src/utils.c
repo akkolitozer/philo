@@ -64,7 +64,7 @@ void	ft_putstr(char *str)
 		write(1, &str[i++], 1);
 }
 
-void	printff(t_philo *philo, char *str)
+void	printfm(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(&philo->rules->mwrite);
 	printf("%ld %d %s\n", get_ms() - philo->rules->start, philo->id, str);
