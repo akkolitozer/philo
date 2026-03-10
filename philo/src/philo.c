@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 01:52:45 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 10:29:47 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	monitor(t_philo *philo)
 {
 	int		i;
 	long	last_meal;
-	
+
 	while (1)
 	{
 		i = -1;
@@ -86,16 +86,18 @@ int	init_philos(t_philo **philo, t_rules *rules)
 		(*philo)[i].meals_eaten = 0;
 		(*philo)[i].last_meal = rules->start;
 		(*philo)[i].rules = rules;
-		if (pthread_create(&((*philo)[i].thread), NULL, routine, &((*philo)[i])))
-			return(printf("Error creating thread for philo [%d]\n", (*philo)[i].id));
+		if (pthread_create(&((*philo)[i].thread),
+			NULL, routine, &((*philo)[i])))
+			return (printf("Error creating thread for philo [%d]\n",
+					(*philo)[i].id));
 	}
 	return (0);
 }
 
 void	*routine(void *arg)
 {
-	t_philo *philo;
-	
+	t_philo	*philo;
+
 	philo = (t_philo *) arg;
 	if (philo->id % 2 == 0)
 		usleep(1000);

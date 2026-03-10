@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 01:46:21 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 10:33:07 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int ac, char **av)
 {
 	t_rules	*rules;
 	t_philo	*philo;
-	int	i;
-	
+	int		i;
+
 	i = -1;
 	rules = ft_calloc(1, sizeof(t_rules));
 	if (!rules)
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	if (ac == 5 || ac == 6)
 		parser_args(rules, av);
 	else
-		return (printf("Error\nWrong Arguments Number.\n"));
+		return (printf("Error with arguments number\n"));
 	if (rules->error)
 		return (1);
 	philo = ft_calloc(rules->philo_number, sizeof(t_philo));
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 		return (printf("Error creating philos struct\n"));
 	rules->start = get_ms();
 	if (init_philos(&philo, rules))
-		return (printf("Error\nFailed philo init\n"));
+		return (printf("Error initializing philo\n"));
 	monitor(philo);
 	while (++i < rules->philo_number)
 		pthread_join(philo[i].thread, NULL);
