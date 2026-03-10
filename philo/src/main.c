@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 10:33:07 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:56:00 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int	main(int ac, char **av)
 	while (++i < rules->philo_number)
 		pthread_join(philo[i].thread, NULL);
 	destroy_mutexs(rules);
+	printf("%ld\n", get_ms());
 	return (0);
 }

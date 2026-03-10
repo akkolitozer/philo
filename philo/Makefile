@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+         #
+#    By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/20 16:34:37 by hulescur          #+#    #+#              #
-#    Updated: 2026/03/10 00:57:10 by akkolitozer      ###   ########.fr        #
+#    Updated: 2026/03/10 12:57:45 by hulescur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:29:31 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 10:29:37 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:57:40 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	ft_putstr(char *str)
 
 void	printfm(t_philo *philo, char *str)
 {
+	if (simstop(philo) == 1)
+		return ;
 	pthread_mutex_lock(&philo->rules->mwrite);
 	printf("%ld %d %s\n", get_ms() - philo->rules->start, philo->id, str);
 	pthread_mutex_unlock(&philo->rules->mwrite);

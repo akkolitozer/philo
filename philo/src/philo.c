@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 10:29:47 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/10 15:36:55 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void	monitor(t_philo *philo)
 			pthread_mutex_unlock(&philo[i].rules->mmeal);
 			if (get_ms() - last_meal > philo[i].rules->time_to_die)
 			{
+				if (simstop(philo))
+					return ;
 				pthread_mutex_lock(&philo[i].rules->mstop);
-				philo[i].rules->stop = 1;
+				philo[i].rules->stop = 2;
 				pthread_mutex_unlock(&philo[i].rules->mstop);
 				printfm(&philo[i], "died");
 				return ;
@@ -104,13 +106,16 @@ void	*routine(void *arg)
 	while (!simstop(philo))
 	{
 		takefork(philo);
-		eat(philo);
+		if (!simstop(philo))
+			eat(philo);
 		dropfork(philo);
 		if (all_meals_eaten(philo))
 			break ;
-		printfm(philo, "is sleeping");
-		usleep_hm(philo->rules, philo->rules->time_to_sleep);
-		printfm(philo, "is thinking");
+		if (!simstop(philo))
+			printfm(philo, "is sleeping");
+		usleep_hm(philo, philo->rules->time_to_sleep);
+		if (!simstop(philo))
+			printfm(philo, "is thinking");
 		usleep(100);
 	}
 	return (NULL);
