@@ -6,7 +6,7 @@
 /*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:59 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 00:04:29 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 01:26:18 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ long    get_ms(void)
     return ((tv.tv_sec * 1000L) + (tv.tv_usec / 1000L));
 }
 
-void    usleep_hm(t_philo *philo)
+void    usleep_hm(t_rules *rules, int duration)
 {
     long    target;
 
-    target = get_ms() + philo->rules->time_to_sleep;
-    while (get_ms() < target && !philo->rules->stop)
+    target = get_ms() + duration;
+    while (get_ms() < target && !rules->stop)
         usleep(150);
 }

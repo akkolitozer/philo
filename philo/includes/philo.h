@@ -6,7 +6,7 @@
 /*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 00:06:41 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/10 01:22:39 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ typedef struct		s_rules
 	long			time_to_sleep;
 	long			number_of_meals;
 	long			start;
-	long			now;
 	int				stop;
+	long			now;
 	int				error;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	mstop;
+	pthread_mutex_t	mwrite;
+	pthread_mutex_t	mmeal;
 }					t_rules;
 
 typedef struct	s_philo
@@ -45,11 +48,19 @@ typedef struct	s_philo
 }				t_philo;
 
 long    get_ms(void);
+void	eat(t_philo *philo);
 void	*routine(void *arg);
 void	ft_putstr(char *str);
-void    usleep_hm(t_philo *philo);
+int		simstop(t_philo *philo);
+void	dropfork(t_philo *philo);
+void	takefork(t_philo *philo);
+int		init_mutexs(t_rules *rules);
+void	destroy_mutexs(t_rules *rules);
+int		all_meals_eaten(t_philo *philo);
+void	printff(t_philo *philo, char *str);
 void	*ft_calloc(size_t count, size_t size);
 void	parser_args(t_rules *rules, char **av);
+void    usleep_hm(t_rules *rules, int duration);
 int		ft_atoi(const char *str, t_rules *rules);
 int		init_forks(t_philo **philo, t_rules *rules);
 int		init_philos(t_philo **philo, t_rules *rules);
