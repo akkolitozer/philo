@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 18:45:33 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:07:27 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	parser_args(t_rules *rules, char **av)
 		else if (i == 5 && !rules->error)
 			rules->number_of_meals = ft_atoi(av[i], rules);
 	}
+	rules->fed_philos = 0;
 	if (rules->error || rules->philo_number < 1)
 		printf("Error\nInvalid Arguments\n");
 }

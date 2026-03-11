@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 12:47:44 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:05:39 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_rules
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			number_of_meals;
+	int				fed_philos;
 	long			start;
 	int				stop;
 	int				error;
@@ -42,6 +43,7 @@ typedef struct s_philo
 	int			right_fork;
 	int			meals_eaten;
 	long		last_meal;
+	int			fed;
 	t_rules		*rules;
 	pthread_t	thread;
 }				t_philo;

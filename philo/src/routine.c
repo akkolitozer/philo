@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:28:14 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 13:02:43 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:08:41 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,18 @@ int	all_meals_eaten(t_philo *philo)
 		pthread_mutex_unlock(&philo->rules->mmeal);
 		return (0);
 	}
-	if (philo->meals_eaten >= philo->rules->number_of_meals)
+	if (philo->meals_eaten >= philo->rules->number_of_meals && !philo->fed)
 	{
-		pthread_mutex_unlock(&philo->rules->mmeal);
-		pthread_mutex_lock(&philo->rules->mstop);
-		philo->rules->stop = 1;
-		pthread_mutex_unlock(&philo->rules->mstop);
-		return (1);
+		philo->fed = 1;
+		philo->rules->fed_philos++;
+		if (philo->rules->fed_philos >= philo->rules->philo_number)
+		{
+			pthread_mutex_unlock(&philo->rules->mmeal);
+			pthread_mutex_lock(&philo->rules->mstop);
+			philo->rules->stop = 1;
+			pthread_mutex_unlock(&philo->rules->mstop);
+			return (1);
+		}
 	}
 	pthread_mutex_unlock(&philo->rules->mmeal);
 	return (0);

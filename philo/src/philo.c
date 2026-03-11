@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 15:36:55 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:06:18 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	init_philos(t_philo **philo, t_rules *rules)
 		(*philo)[i].meals_eaten = 0;
 		(*philo)[i].last_meal = rules->start;
 		(*philo)[i].rules = rules;
+		(*philo)[i].fed = 0;
 		if (pthread_create(&((*philo)[i].thread),
 			NULL, routine, &((*philo)[i])))
 			return (printf("Error creating thread for philo [%d]\n",

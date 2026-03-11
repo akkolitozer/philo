@@ -1,7 +1,7 @@
-/// nb de philos entre 0 et 200
+/// nb de philos entre 0 et 200 -------------------------------------------------------- /!\ DONE /!\
 
-/// mauvais nobre de repas
-➜  philo git:(main) ✗ ./philo 200 410 200 200 1 | grep "is eating" | wc -l
+/// mauvais nombre de repas
+➜  philo git:(main) ✗ ./philo 200 410 200 200 1 | grep "is eating" | wc -l-------------------------------------------------------- /!\ DONE /!\
 100
 
 ///corriger les data races

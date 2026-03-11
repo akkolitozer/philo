@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 16:56:00 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:58:51 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	if (ac == 5 || ac == 6)
 		parser_args(rules, av);
 	else
-		return (printf("Error with arguments number\n"));
+		return (printf("Error with argument number\n"));
 	if (rules->error)
 		return (1);
 	philo = ft_calloc(rules->philo_number, sizeof(t_philo));
@@ -38,6 +38,5 @@ int	main(int ac, char **av)
 	while (++i < rules->philo_number)
 		pthread_join(philo[i].thread, NULL);
 	destroy_mutexs(rules);
-	printf("%ld\n", get_ms());
 	return (0);
 }
