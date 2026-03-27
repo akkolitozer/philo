@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/13 15:36:30 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/27 19:56:35 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,18 @@ int	init_philos(t_philo **philo, t_rules *rules)
 void	*routine(void *arg)
 {
 	t_philo	*philo;
+	int		to_free;
 
+	to_free = 0;
 	philo = (t_philo *) arg;
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 == 1)
 		usleep(1000);
 	while (!simstop(philo))
 	{
-		takefork(philo);
-		if (!simstop(philo))
+		to_free = takefork(philo);
+		if (!simstop(philo) && to_free)
 			eat(philo);
-		dropfork(philo);
+		dropfork(philo, to_free);
 		if (all_meals_eaten(philo))
 			break ;
 		if (!simstop(philo))

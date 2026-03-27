@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:28:14 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/11 02:08:41 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/27 19:51:58 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,32 @@ int	simstop(t_philo *philo)
 	return (0);
 }
 
-void	takefork(t_philo *philo)
+int	takefork(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->rules->forks[philo->left_fork]);
+	int	first;
+	int	second;
+
+	if (philo->left_fork < philo->right_fork)
+		first = philo->left_fork;
+	else
+		first = philo->right_fork;
+	if (philo->left_fork < philo->right_fork)
+		second = philo->right_fork;
+	else
+		second = philo->left_fork;
+	pthread_mutex_lock(&philo->rules->forks[first]);
 	if (simstop(philo))
-		return ;
+		return (pthread_mutex_unlock(&philo->rules->forks[first]), 0);
 	printfm(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->rules->forks[philo->right_fork]);
+	pthread_mutex_lock(&philo->rules->forks[second]);
 	if (simstop(philo))
-		return ;
+	{
+		pthread_mutex_unlock(&philo->rules->forks[first]);
+		pthread_mutex_unlock(&philo->rules->forks[second]);
+		return (0);
+	}
 	printfm(philo, "has taken a fork");
+	return (1);
 }
 
 void	eat(t_philo *philo)
@@ -53,10 +69,13 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->rules->mmeal);
 }
 
-void	dropfork(t_philo *philo)
+void	dropfork(t_philo *philo, int to_free)
 {
-	pthread_mutex_unlock(&philo->rules->forks[philo->left_fork]);
-	pthread_mutex_unlock(&philo->rules->forks[philo->right_fork]);
+	if (to_free)
+	{
+		pthread_mutex_unlock(&philo->rules->forks[philo->left_fork]);
+		pthread_mutex_unlock(&philo->rules->forks[philo->right_fork]);
+	}
 }
 
 int	all_meals_eaten(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:29:31 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/10 12:57:40 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/03/14 17:18:32 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,8 @@ void	printfm(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->rules->mwrite);
 	printf("%ld %d %s\n", get_ms() - philo->rules->start, philo->id, str);
 	pthread_mutex_unlock(&philo->rules->mwrite);
+	pthread_mutex_lock(&philo->rules->mstop);
+	if (philo->rules->stop == 2)
+		philo->rules->stop = 1;
+	pthread_mutex_unlock(&philo->rules->mstop);
 }

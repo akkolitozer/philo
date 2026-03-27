@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/11 02:07:27 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/14 17:10:48 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+int	one_philo(t_rules *rules)
+{
+	printf("0 1 has taken a fork\n");
+	while (get_ms() < rules->start + rules->time_to_die)
+		usleep(150);
+	printf("%ld 1 died\n", get_ms() - rules->start);
+	return (0);
+}
 
 void	parser_args(t_rules *rules, char **av)
 {
 	int	i;
 
 	i = 0;
-	rules->error = 0;
+	rules->start = get_ms();
 	rules->number_of_meals = -1;
 	while (av[++i])
 	{

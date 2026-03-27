@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/11 02:05:39 by akkolitozer      ###   ########.fr       */
+/*   Updated: 2026/03/14 17:01:02 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ void	*routine(void *arg);
 void	ft_putstr(char *str);
 void	monitor(t_philo *philo);
 int		simstop(t_philo *philo);
-void	dropfork(t_philo *philo);
-void	takefork(t_philo *philo);
+int		takefork(t_philo *philo);
+int		one_philo(t_rules *rules);
 int		init_mutexs(t_rules *rules);
 void	destroy_mutexs(t_rules *rules);
 int		all_meals_eaten(t_philo *philo);
 void	printfm(t_philo *philo, char *str);
+void	dropfork(t_philo *philo, int to_free);
 void	*ft_calloc(size_t count, size_t size);
 void	parser_args(t_rules *rules, char **av);
 void	usleep_hm(t_philo *philo, int duration);
