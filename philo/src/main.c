@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 17:42:59 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:46:35 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = -1;
+	if (ac != 5 && ac != 6)
+		return (printf("Error with argument number\n"));
 	rules = ft_calloc(1, sizeof(t_rules));
 	if (!rules)
 		return (printf("Error creating rules struct\n"));
-	if (ac != 5 && ac != 6)
-		return (printf("Error with argument number\n"));
 	parser_args(rules, av);
 	if (rules->philo_number == 1)
-		return (one_philo(rules));
+		return (one_philo(rules), free(rules), 1);
 	if (rules->error)
-		return (free(), 1);
+		return (free(rules), 1);
 	philo = ft_calloc(rules->philo_number, sizeof(t_philo));
 	if (!philo)
 		return (printf("Error creating philos struct\n"));
