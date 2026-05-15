@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/27 19:56:35 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:44:22 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,19 @@ int	init_mutexs(t_rules *rules)
 	return (0);
 }
 
-void	destroy_mutexs(t_rules *rules)
+void	destroy_mutexs(t_philo *philo)
 {
 	int	i;
 
 	i = -1;
-	while (++i < rules->philo_number)
-		pthread_mutex_destroy(&rules->forks[i]);
-	pthread_mutex_destroy(&rules->mstop);
-	pthread_mutex_destroy(&rules->mwrite);
-	pthread_mutex_destroy(&rules->mmeal);
-	free(rules->forks);
+	while (++i < philo->rules->philo_number)
+		pthread_mutex_destroy(&philo->rules->forks[i]);
+	pthread_mutex_destroy(&philo->rules->mstop);
+	pthread_mutex_destroy(&philo->rules->mwrite);
+	pthread_mutex_destroy(&philo->rules->mmeal);
+	free(philo->rules->forks);
+	free(philo->rules);
+	free(philo);
 }
 
 int	init_philos(t_philo **philo, t_rules *rules)

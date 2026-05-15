@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/14 17:01:02 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:42:14 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		simstop(t_philo *philo);
 int		takefork(t_philo *philo);
 int		one_philo(t_rules *rules);
 int		init_mutexs(t_rules *rules);
-void	destroy_mutexs(t_rules *rules);
+void	destroy_mutexs(t_philo *philo);
 int		all_meals_eaten(t_philo *philo);
 void	printfm(t_philo *philo, char *str);
 void	dropfork(t_philo *philo, int to_free);
