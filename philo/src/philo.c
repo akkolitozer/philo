@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 15:44:22 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:22:06 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,8 @@ void	*routine(void *arg)
 	t_philo	*philo;
 	int		to_free;
 
-	to_free = 0;
 	philo = (t_philo *) arg;
-	if (philo->id % 2 == 1)
-		usleep(1000);
+	start_routine(philo);
 	while (!simstop(philo))
 	{
 		to_free = takefork(philo);
@@ -120,7 +118,11 @@ void	*routine(void *arg)
 			printfm(philo, "is sleeping");
 		usleep_hm(philo, philo->rules->time_to_sleep);
 		if (!simstop(philo))
+		{
 			printfm(philo, "is thinking");
+			if (philo->rules->philo_number == 3)
+				usleep_hm(philo, philo->rules->time_to_eat / 5);
+		}
 		usleep(100);
 	}
 	return (NULL);
