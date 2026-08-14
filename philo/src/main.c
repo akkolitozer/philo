@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:22:40 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 17:46:35 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/08/14 10:58:05 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	main(int ac, char **av)
 		return (free(rules), 1);
 	philo = ft_calloc(rules->philo_number, sizeof(t_philo));
 	if (!philo)
-		return (printf("Error creating philos struct\n"));
+		return (free(rules), printf("Error creating philos struct\n"));
 	if (init_philos(&philo, rules))
-		return (printf("Error initializing philo\n"));
+		return (free(rules), free(philo), printf("Error init philo\n"));
 	monitor(philo);
 	while (++i < rules->philo_number)
 		pthread_join(philo[i].thread, NULL);
