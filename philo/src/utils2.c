@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akkolitozer <akkolitozer@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 16:16:42 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 17:23:35 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/05/18 03:05:12 by akkolitozer      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void start_routine(t_philo *philo)
+void	start_routine(t_philo *philo)
 {
 	if (philo->rules->philo_number % 2 == 1)
 	{
