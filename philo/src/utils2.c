@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 16:16:42 by hulescur          #+#    #+#             */
-/*   Updated: 2026/08/14 12:18:39 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:38:27 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ void	start_routine(t_philo *philo)
 	}
 	else if (philo->id % 2 == 0)
 		usleep_hm(philo, philo->rules->tte / 2);
+}
+
+void	announce_death(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->rules->mwrite);
+	pthread_mutex_lock(&philo->rules->mstop);
+	philo->rules->stop = 1;
+	printf("%ld %d died\n", get_ms() - philo->rules->start, philo->id);
+	pthread_mutex_unlock(&philo->rules->mstop);
+	pthread_mutex_unlock(&philo->rules->mwrite);
 }

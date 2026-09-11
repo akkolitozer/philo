@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/08/14 17:35:04 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:40:58 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	monitor(t_philo *philo)
 			{
 				if (simstop(philo))
 					return ;
-				pthread_mutex_lock(&philo[i].rules->mstop);
-				philo[i].rules->stop = 2;
-				pthread_mutex_unlock(&philo[i].rules->mstop);
-				printfm(&philo[i], "died");
+				announce_death(&philo[i]);
 				return ;
 			}
 		}

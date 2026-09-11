@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:29:31 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/14 17:18:32 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:39:45 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,10 @@ void	ft_putstr(char *str)
 
 void	printfm(t_philo *philo, char *str)
 {
-	if (simstop(philo) == 1)
-		return ;
 	pthread_mutex_lock(&philo->rules->mwrite);
-	printf("%ld %d %s\n", get_ms() - philo->rules->start, philo->id, str);
-	pthread_mutex_unlock(&philo->rules->mwrite);
 	pthread_mutex_lock(&philo->rules->mstop);
-	if (philo->rules->stop == 2)
-		philo->rules->stop = 1;
+	if (philo->rules->stop == 0)
+		printf("%ld %d %s\n", get_ms() - philo->rules->start, philo->id, str);
 	pthread_mutex_unlock(&philo->rules->mstop);
+	pthread_mutex_unlock(&philo->rules->mwrite);
 }
