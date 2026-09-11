@@ -27,7 +27,7 @@ make
 Run it with:
 
 ```sh
-./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_meals_required]
+./philo number_of_philosophers time_to_die tte tts [number_of_meals_required]
 ```
 
 Example:

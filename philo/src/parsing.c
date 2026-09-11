@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:35:58 by hulescur          #+#    #+#             */
-/*   Updated: 2026/03/14 17:10:48 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/08/14 17:18:05 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	parser_args(t_rules *rules, char **av)
 		else if (i == 2 && !rules->error)
 			rules->time_to_die = ft_atoi(av[i], rules);
 		else if (i == 3 && !rules->error)
-			rules->time_to_eat = ft_atoi(av[i], rules);
+			rules->tte = ft_atoi(av[i], rules);
 		else if (i == 4 && !rules->error)
-			rules->time_to_sleep = ft_atoi(av[i], rules);
+			rules->tts = ft_atoi(av[i], rules);
 		else if (i == 5 && !rules->error)
 			rules->number_of_meals = ft_atoi(av[i], rules);
 	}

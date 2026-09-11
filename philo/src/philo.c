@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:18:55 by hulescur          #+#    #+#             */
-/*   Updated: 2026/07/07 17:56:44 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/08/14 17:35:04 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ void	*routine(void *arg)
 			break ;
 		if (!simstop(philo))
 			printfm(philo, "is sleeping");
-		usleep_hm(philo, philo->rules->time_to_sleep);
+		usleep_hm(philo, philo->rules->tts);
 		if (!simstop(philo))
 		{
 			printfm(philo, "is thinking");
 			if (philo->rules->philo_number == 3)
-				usleep_hm(philo, philo->rules->time_to_eat / 5);
+				usleep_hm(philo, philo->rules->tte);
 		}
 		usleep(100);
 	}

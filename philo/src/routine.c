@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:28:14 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 17:16:11 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:18:39 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	eat(t_philo *philo)
 	philo->last_meal = get_ms();
 	pthread_mutex_unlock(&philo->rules->mmeal);
 	printfm(philo, "is eating");
-	usleep_hm(philo, philo->rules->time_to_eat);
+	usleep_hm(philo, philo->rules->tte);
 	pthread_mutex_lock(&philo->rules->mmeal);
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->rules->mmeal);

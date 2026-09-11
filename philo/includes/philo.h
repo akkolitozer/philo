@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 15:23:22 by hulescur          #+#    #+#             */
-/*   Updated: 2026/05/15 17:31:25 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/08/14 12:18:39 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_rules
 {
 	int				philo_number;
 	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
+	long			tte;
+	long			tts;
 	long			number_of_meals;
 	int				fed_philos;
 	long			start;
